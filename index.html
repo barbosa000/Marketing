@@ -1,41 +1,145 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Marketing Isoflex</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Marketing Isoflex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-<h1>Dashboard de Atividades - Marketing</h1>
-
-<div class="stats">
-<div class="card"><h2 id="total">0</h2><p>Total</p></div>
-<div class="card"><h2 id="pendentesCount">0</h2><p>Pendentes</p></div>
-<div class="card"><h2 id="andamentoCount">0</h2><p>Em Andamento</p></div>
-<div class="card"><h2 id="concluidasCount">0</h2><p>Concluídas</p></div>
-<div class="card"><h2 id="atrasadasCount">0</h2><p>Atrasadas</p></div>
-</div>
-
-<div class="form">
-<input id="titulo" placeholder="Nova tarefa">
-<select id="status">
-<option>Pendentes</option>
-<option>Em Andamento</option>
-<option>Concluídas</option>
-<option>Atrasadas</option>
-</select>
-<button onclick="addTask()">Adicionar</button>
-</div>
-
-<div class="board">
-<div class="column"><h3>Pendentes</h3><div id="Pendentes"></div></div>
-<div class="column"><h3>Em Andamento</h3><div id="Em Andamento"></div></div>
-<div class="column"><h3>Concluídas</h3><div id="Concluídas"></div></div>
-<div class="column"><h3>Atrasadas</h3><div id="Atrasadas"></div></div>
-</div>
-</div>
-<script src="script.js"></script>
+ 
+  <div class="sidebar">
+    <div class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">Isoflex<strong>MKT</strong></span>
+    </div>
+    <nav>
+      <a class="nav-item active" href="#">
+        <span class="nav-icon">▦</span> Dashboard
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">◷</span> Calendário
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">◎</span> Relatórios
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">◉</span> Equipe
+      </a>
+    </nav>
+  </div>
+ 
+  <div class="main">
+ 
+    <header class="topbar">
+      <div>
+        <h1 class="page-title">Dashboard de Atividades</h1>
+        <p class="page-sub">Marketing · <span id="dataHoje"></span></p>
+      </div>
+      <button class="btn-add-top" onclick="openModal()">+ Nova Tarefa</button>
+    </header>
+ 
+    <div class="stats">
+      <div class="card stat-card total">
+        <p class="stat-label">Total</p>
+        <h2 class="stat-num" id="total">0</h2>
+        <div class="stat-bar"><div class="stat-fill" style="width:100%"></div></div>
+      </div>
+      <div class="card stat-card pendente">
+        <p class="stat-label">Pendentes</p>
+        <h2 class="stat-num" id="pendentesCount">0</h2>
+        <div class="stat-bar"><div class="stat-fill" id="barPendente" style="width:0%"></div></div>
+      </div>
+      <div class="card stat-card andamento">
+        <p class="stat-label">Em Andamento</p>
+        <h2 class="stat-num" id="andamentoCount">0</h2>
+        <div class="stat-bar"><div class="stat-fill" id="barAndamento" style="width:0%"></div></div>
+      </div>
+      <div class="card stat-card concluida">
+        <p class="stat-label">Concluídas</p>
+        <h2 class="stat-num" id="concluidasCount">0</h2>
+        <div class="stat-bar"><div class="stat-fill" id="barConcluida" style="width:0%"></div></div>
+      </div>
+      <div class="card stat-card atrasada">
+        <p class="stat-label">Atrasadas</p>
+        <h2 class="stat-num" id="atrasadasCount">0</h2>
+        <div class="stat-bar"><div class="stat-fill" id="barAtrasada" style="width:0%"></div></div>
+      </div>
+    </div>
+ 
+    <div class="board">
+      <div class="column pendente-col">
+        <div class="col-header">
+          <span class="col-dot"></span>
+          <h3>Pendentes</h3>
+          <span class="col-badge" id="badge-Pendentes">0</span>
+        </div>
+        <div class="task-list" id="Pendentes"></div>
+      </div>
+      <div class="column andamento-col">
+        <div class="col-header">
+          <span class="col-dot"></span>
+          <h3>Em Andamento</h3>
+          <span class="col-badge" id="badge-Em Andamento">0</span>
+        </div>
+        <div class="task-list" id="Em Andamento"></div>
+      </div>
+      <div class="column concluida-col">
+        <div class="col-header">
+          <span class="col-dot"></span>
+          <h3>Concluídas</h3>
+          <span class="col-badge" id="badge-Concluídas">0</span>
+        </div>
+        <div class="task-list" id="Concluídas"></div>
+      </div>
+      <div class="column atrasada-col">
+        <div class="col-header">
+          <span class="col-dot"></span>
+          <h3>Atrasadas</h3>
+          <span class="col-badge" id="badge-Atrasadas">0</span>
+        </div>
+        <div class="task-list" id="Atrasadas"></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Nova Tarefa</h2>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <label>Título da tarefa</label>
+        <input id="titulo" placeholder="Ex: Criar post para Instagram..." onkeydown="if(event.key==='Enter')addTask()">
+        <label>Categoria</label>
+        <select id="categoria">
+          <option value="">Sem categoria</option>
+          <option>SEO</option>
+          <option>Redes Sociais</option>
+          <option>E-mail</option>
+          <option>Anúncios</option>
+          <option>Conteúdo</option>
+          <option>Design</option>
+        </select>
+        <label>Status</label>
+        <select id="status">
+          <option>Pendentes</option>
+          <option>Em Andamento</option>
+          <option>Concluídas</option>
+          <option>Atrasadas</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+        <button class="btn-confirm" onclick="addTask()">Adicionar Tarefa</button>
+      </div>
+    </div>
+  </div>
+ 
+  <script src="script.js"></script>
 </body>
 </html>
