@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Marketing Isoflex</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<h1>Dashboard de Atividades - Marketing</h1>
+
+<div class="stats">
+<div class="card"><h2 id="total">0</h2><p>Total</p></div>
+<div class="card"><h2 id="pendentesCount">0</h2><p>Pendentes</p></div>
+<div class="card"><h2 id="andamentoCount">0</h2><p>Em Andamento</p></div>
+<div class="card"><h2 id="concluidasCount">0</h2><p>Concluídas</p></div>
+<div class="card"><h2 id="atrasadasCount">0</h2><p>Atrasadas</p></div>
+</div>
+
+<div class="form">
+<input id="titulo" placeholder="Nova tarefa">
+<select id="status">
+<option>Pendentes</option>
+<option>Em Andamento</option>
+<option>Concluídas</option>
+<option>Atrasadas</option>
+</select>
+<button onclick="addTask()">Adicionar</button>
+</div>
+
+<div class="board">
+<div class="column"><h3>Pendentes</h3><div id="Pendentes"></div></div>
+<div class="column"><h3>Em Andamento</h3><div id="Em Andamento"></div></div>
+<div class="column"><h3>Concluídas</h3><div id="Concluídas"></div></div>
+<div class="column"><h3>Atrasadas</h3><div id="Atrasadas"></div></div>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

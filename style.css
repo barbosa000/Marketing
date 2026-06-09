@@ -1,0 +1,10 @@
+
+body{font-family:Arial,sans-serif;background:#f4f6f9;margin:0;padding:20px}
+h1{text-align:center}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
+.card,.column,.form{background:white;padding:15px;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+.form{display:flex;gap:10px;margin-bottom:20px}
+input,select,button{padding:10px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.task{background:#eef2ff;padding:10px;margin:8px 0;border-radius:8px}
+button{cursor:pointer}
